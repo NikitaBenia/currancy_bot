@@ -14,10 +14,22 @@ class BaseDate:
                                 currency TEXT,
                                 pricet FLOAT
         )''')
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS Sales(
+                                user_id_sale INTEGER,
+                                login_sale TEXT,
+                                password_sale INTEGER,
+                                currency_sale TEXT,
+                                count_sale INTEGER,
+                                salet FLOAT
+        )''')
         self.database.commit()
 
     def insert_user(self, user_id, login, password, currency, pricet):
         self.cursor.execute(f"INSERT INTO Users(user_id, login, password, currency, pricet) VALUES (?, ?, ?, ?, ?)",
                             (user_id, login, password, currency, pricet))
         self.database.commit()
-        print('Регистрация прошла успешно!')
+
+    def insert_user_sale(self, user_id_sale, login_sale, password_sale, currency_sale, count_sale, salet):
+        self.cursor.execute(f"INSERT INTO Sales(user_id_sale, login_sale, password_sale, currency_sale, count_sale, salet) VALUES (?, ?, ?, ?, ?, ?)",
+                            (user_id_sale, login_sale, password_sale, currency_sale, count_sale, salet))
+        self.database.commit()
